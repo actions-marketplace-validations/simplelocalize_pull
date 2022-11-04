@@ -1,30 +1,23 @@
-# Upload localization files to SimpleLocalize
+# Pull resources from Translation Hosting
 
-This Github Actions uses official and open-source SimpleLocalize CLI.
+This Github Action uses [official SimpleLocalize CLI](https://github.com/simplelocalize/simplelocalize-cli).
 
-Learn more: https://github.com/simplelocalize/simplelocalize-cli
-
-Documentation: https://simplelocalize.io/docs/cli/upload-translations/
-
-## ☁️ Example upload action
+## Usage
 
 ```yml
-name: 'Upload translations'
+name: 'My project'
 on:
   push:
     branches: [ main, master ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Upload translations
-        uses: simplelocalize/upload@latest
+      - uses: actions/checkout@v3
+      - name: Pull translations
+        uses: simplelocalize/pull@latest
         with:
           apiKey: <YOUR_API_KEY>
-          uploadPath: ./{lang}/translations.json
-          uploadFormat: single-language-json
-          uploadOptions: "PUBLISH_AFTER_IMPORT,TRIM_LEADING_TRIALING_SPACES" # optional
-          languageKey: en # optional, it accepts only one language key
+          pullPath: ./my-hosting/
+          environment: latest # or 'production'
 ```
