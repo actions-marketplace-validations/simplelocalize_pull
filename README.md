@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Pull translations
-        uses: simplelocalize/pull@latest
+        uses: simplelocalize/pull@v2.1
         with:
           apiKey: <YOUR_API_KEY>
           pullPath: ./my-hosting/
