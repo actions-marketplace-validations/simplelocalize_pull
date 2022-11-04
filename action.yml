@@ -1,36 +1,28 @@
-name: 'Upload localization files'
-description: 'Upload localization files to SimpleLocalize translation editor'
+name: 'Pull resources from Translation Hosting'
+description: 'Pull resources from Translation Hosting'
 author: "SimpleLocalize"
 branding:
-  icon: 'upload-cloud'
+  icon: 'download-cloud'
   color: 'blue'
 inputs:
   apiKey:
     description: 'Project API Key'
     required: true
     default: ''
-  uploadPath:
-    description: 'Which files should be uploaded'
+  pullPath:
+    description: 'Choose a download location'
     required: false
-    default: './messages.json'
-  uploadFormat:
-    description: 'Choose a localization files format'
+    default: './hosting'
+  environment:
+    description: 'Choose an environment'
     required: false
-    default: 'multi-language-json'
-  uploadOptions:
-    description: 'Choose additional upload options'
-    required: false
-    default: ''
-  languageKey:
-    description: 'Upload translations with language key'
-    required: false
-    default: ''
+    default: 'latest'
 runs:
   using: "composite"
   steps:
     - id: Setup
-      run: curl -s https://get.simplelocalize.io/2.0/install | bash
+      run: curl -s https://get.simplelocalize.io/2.1/install | bash
       shell: bash
     - id: Execution
       shell: bash
-      run: simplelocalize upload --apiKey ${{ inputs.apiKey }} --uploadPath ${{ inputs.uploadPath }} --uploadFormat ${{ inputs.uploadFormat }} ${{ inputs.uploadOptions && '--uploadOptions' }} ${{ inputs.uploadOptions }} ${{ inputs.languageKey && '--languageKey' }} ${{ inputs.languageKey }}
+      run: simplelocalize pull --apiKey ${{ inputs.apiKey }} --pullPath ${{ inputs.pullPath }} --environment ${{ inputs.environment }}
