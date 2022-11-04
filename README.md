@@ -2,6 +2,8 @@
 
 This Github Action uses [official SimpleLocalize CLI](https://github.com/simplelocalize/simplelocalize-cli).
 
+Learn more: https://simplelocalize.io/docs/integrations/github-actions/
+
 ## Usage
 
 ```yml
